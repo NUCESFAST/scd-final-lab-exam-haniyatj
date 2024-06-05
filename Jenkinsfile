@@ -1,31 +1,60 @@
+
 pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
                 git branch: 'master', url: 'https://github.com/NUCESFAST/scd-final-lab-exam-haniyatj'
             }
         }
 
-        stage('Dependency Installation') {
+        stage('Build Frontend') {
             steps {
-                bat 'npm install' 
+                dir('./client') {
+                    script {
+                        // Assuming you use npm for React frontend
+                        sh 'npm install'
+                        // Other build commands if needed
+                    }
+                }
+            }
+        }
+        
+        stage('Build and Deploy Backend 1') {
+            steps {
+                dir('./Classrooms') {
+                    script {
+                        // Assuming you use npm for Node.js backend
+                        sh 'npm install'
+                        // Other build and deployment commands for backend 1
+                    }
+                }
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build and Deploy Backend 2') {
             steps {
-                bat 'docker build -t dockerr .'
+                dir('./event-bus') {
+                    script {
+                        // Assuming you use npm for Node.js backend
+                        sh 'npm install'
+                        // Other build and deployment commands for backend 2
+                    }
+                }
             }
         }
 
-        stage('Run Docker Image') {
+        stage('Build and Deploy Backend 3') {
             steps {
-                bat 'docker run -d -p 3000:11 dockerr'
+                dir('./Post') {
+                    script {
+                        // Assuming you use npm for Node.js backend
+                        sh 'npm install'
+                        // Other build and deployment commands for backend 3
+                    }
+                }
             }
         }
-
-       
-        }
+    }
 }
