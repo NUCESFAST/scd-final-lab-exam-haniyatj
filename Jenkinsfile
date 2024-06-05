@@ -13,9 +13,7 @@ pipeline {
             steps {
                 dir('./client') {
                     script {
-                        // Assuming you use npm for React frontend
                         sh 'npm install'
-                        // Other build commands if needed
                     }
                 }
             }
