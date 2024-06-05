@@ -35,9 +35,7 @@ pipeline {
             steps {
                 dir('./event-bus') {
                     script {
-                        // Assuming you use npm for Node.js backend
                         sh 'npm install'
-                        // Other build and deployment commands for backend 2
                     }
                 }
             }
@@ -47,9 +45,7 @@ pipeline {
             steps {
                 dir('./Post') {
                     script {
-                        // Assuming you use npm for Node.js backend
                         sh 'npm install'
-                        // Other build and deployment commands for backend 3
                     }
                 }
             }
